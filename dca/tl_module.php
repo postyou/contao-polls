@@ -22,7 +22,7 @@ $this->loadDataContainer('tl_content');
 /**
  * Add palettes to tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['poll']     = '{title_legend},name,headline,type;{config_legend},poll,poll_current;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['poll']     = '{title_legend},name,headline,type;{config_legend},poll,poll_current, poll_random, poll_newest, javascriptField;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['polllist'] = '{title_legend},name,headline,type;{config_legend},poll_active,poll_visible,poll_featured,numberOfItems,perPage;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 
 
@@ -82,4 +82,28 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['poll_featured'] = array
 	'reference'               => &$GLOBALS['TL_LANG']['tl_module']['poll_featured'],
 	'eval'                    => array('tl_class'=>'w50'),
 	'sql'                     => "varchar(4) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['poll_random'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['poll_random'],
+	'exclude'                 => true,
+	'inputType'               => 'checkbox',
+	'eval'                    => array('tl_class'=>'w50 m12'),
+	'sql'                     => "char(1) NOT NULL default ''"
+);
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['poll_newest'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['poll_newest'],
+	'exclude'                 => true,
+	'inputType'               => 'checkbox',
+	'eval'                    => array('tl_class'=>'w50 m12'),
+	'sql'                     => "char(1) NOT NULL default ''"
+);
+
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['javascriptField'] = array 
+(
+	'input_field_callback' => array('tl_content_poll', 'changeCheckboxStates')
 );

@@ -16,7 +16,9 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_poll']['title']                     = array('Titel', 'Bitte geben Sie den Titel der Umfrage ein.');
+$GLOBALS['TL_LANG']['tl_poll']['title']                     = array('Frage', 'Bitte geben Sie die Fragestellung der Umfrage ein.');
+$GLOBALS['TL_LANG']['tl_poll']['type']                      = array('Typ', 'Auswahl des Umfragetyps');
+$GLOBALS['TL_LANG']['tl_poll']['headline']                  = array('Überschrift', 'Vergeben Sie eine optionale zusätzliche Überschrift.');
 $GLOBALS['TL_LANG']['tl_poll']['voteInterval']              = array('Interval zur Abstimmung', 'Hier können Sie in Sekunden angeben, wann der Benutzer erneut abstimmen kann. Setzen Sie eine 0, wenn nur einmalig abgestimmt werden darf.');
 $GLOBALS['TL_LANG']['tl_poll']['protected']                 = array('Umfrage schützen', 'Nur eingeloggte Benutzer dürfen abstimmen.');
 $GLOBALS['TL_LANG']['tl_poll']['featured']                  = array('Umfrage hervorheben', 'Die Umfrage im Frontend hervorheben.');
@@ -45,6 +47,8 @@ $GLOBALS['TL_LANG']['tl_poll']['publish_legend']  = 'Veröffentlichung';
 /**
  * Reference
  */
+$GLOBALS['TL_LANG']['tl_poll']['type']['single']           = 'Einzelstimme (radio)';
+$GLOBALS['TL_LANG']['tl_poll']['type']['multiple']         = 'Mehrere Stimmen/Antworten (checkbox)';
 $GLOBALS['TL_LANG']['tl_poll']['behaviorNotVoted']['opt1'] = 'Zeigt einen Link zum Ergebnis an.';
 $GLOBALS['TL_LANG']['tl_poll']['behaviorNotVoted']['opt2'] = 'Ergebnisse nicht anzeigen.';
 $GLOBALS['TL_LANG']['tl_poll']['behaviorNotVoted']['opt3'] = 'Ergebnisse sofort anzeigen.';

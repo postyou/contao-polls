@@ -1,4 +1,4 @@
-
+<?php if ($this->poll) { ?>
 <div class="<?php echo $this->class; ?><?php if ($this->featured): ?> featured<?php endif; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
 <?php if ($this->headline): ?>
 
@@ -6,5 +6,6 @@
 <?php endif; ?>
 
 <?php echo $this->poll; ?>
-
+<a href="{{link_url::144}}">Weitere Umfragen anzeigen</a>
 </div>
+<?php } ?>

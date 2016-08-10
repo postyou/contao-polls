@@ -139,7 +139,7 @@ class ModulePollList extends \Module
 			$this->Template->pagination = $objPagination->generate("\n  ");
 		}
 
-		$objPollsStmt = $this->Database->prepare("SELECT * FROM tl_poll" . (!empty($arrWhere) ? " WHERE ".implode(" AND ", $arrWhere) : "") . " ORDER BY closed ASC, showStart DESC, activeStart DESC");
+		$objPollsStmt = $this->Database->prepare("SELECT * FROM tl_poll" . (!empty($arrWhere) ? " WHERE ".implode(" AND ", $arrWhere) : "") . " ORDER BY closed ASC, showStart DESC, activeStart DESC, tstamp DESC");
 
 		// Limit the result
 		if (isset($limit))

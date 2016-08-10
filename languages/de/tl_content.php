@@ -18,3 +18,5 @@
  */
 $GLOBALS['TL_LANG']['tl_content']['poll']         = array('Umfrage', 'Bitte wählen Sie die anzuzeigende Umfrage aus.');
 $GLOBALS['TL_LANG']['tl_content']['poll_current'] = array('Derzeitige Umfrage anzeigen', 'Nutzt die derzeitige Umfrage basierend auf den Werten der Felder "anzeigen von" und "anzeigen bis". Die gewählte Umfrage wird als Ausweichmöglichkeit (fallback) genutzt.');
+$GLOBALS['TL_LANG']['tl_content']['poll_random'] = array('Zufällige Umfrage anzeigen');
+$GLOBALS['TL_LANG']['tl_content']['poll_newest'] = array('Neueste Umfrage anzeigen');

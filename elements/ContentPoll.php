@@ -47,7 +47,7 @@ class ContentPoll extends \Module
 		}
 
 		// Return if there is no poll
-		if (!$this->poll && !$this->poll_current)
+		if (!$this->poll && !$this->poll_current && !$this->poll_random && !$this->poll_newest)
 		{
 			return '';
 		}
@@ -63,7 +63,10 @@ class ContentPoll extends \Module
 	{
 		$intPoll = $this->poll;
 
-		// Try to find the current poll
+		
+		
+
+		// Try to find the active poll
 		if ($this->poll_current)
 		{
 			$time = time();
@@ -75,7 +78,29 @@ class ContentPoll extends \Module
 			{
 				$intPoll = $objCurrentPoll->id;
 			}
+		} else if ($this->poll_random) {
+			$lastPoll = $_SESSION['LAST_POLL'];
+			if ($_SESSION['POLL'][$lastPoll] == $GLOBALS['TL_LANG']['MSC']['voteSubmitted']) {
+				var_dump("test");
+				$intPoll = $lastPoll;
+			} else {
+				$objRandomPoll = $this->Database->prepare("SELECT id FROM tl_poll WHERE ". (!BE_USER_LOGGED_IN ? " published=1" : "") . " ORDER BY RAND()")
+											 ->limit(1)->execute();
+				if ($objRandomPoll->numRows)
+				{
+					$intPoll = $objRandomPoll->id;
+				}
+			}
+			
+		} else if ($this->poll_newest) {
+			$objNewestPoll = $this->Database->prepare("SELECT id FROM tl_poll WHERE ". (!BE_USER_LOGGED_IN ? " published=1" : "") . " ORDER BY tstamp DESC")
+											 ->limit(1)->execute();
+			if ($objNewestPoll->numRows)
+			{
+				$intPoll = $objNewestPoll->id;
+			}
 		}
+
 
 		// Return if there is no poll
 		if (!$intPoll)

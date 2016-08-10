@@ -24,8 +24,8 @@ $GLOBALS['TL_LANG']['CTE']['poll'] = array('Umfrage', 'Zeigt eine Umfrage an.');
  */
 $GLOBALS['TL_LANG']['MSC']['votes']         = 'Stimme(n)';
 $GLOBALS['TL_LANG']['MSC']['loginToVote']   = 'Bitte loggen Sie sich ein, um abzustimmen.';
-$GLOBALS['TL_LANG']['MSC']['vote']          = 'abstimmen';
+$GLOBALS['TL_LANG']['MSC']['vote']          = 'Abstimmen';
 $GLOBALS['TL_LANG']['MSC']['showResults']   = 'Ergebnisse anzeigen';
-$GLOBALS['TL_LANG']['MSC']['showForm']      = 'Zur Umfrage';
+$GLOBALS['TL_LANG']['MSC']['showForm']      = 'Zur Abstimmung';
 $GLOBALS['TL_LANG']['MSC']['voteSubmitted'] = 'Danke für Ihre Stimme!';
 $GLOBALS['TL_LANG']['MSC']['pollClosed']    = 'Umfrage ist geschlossen.';

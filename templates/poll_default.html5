@@ -2,7 +2,10 @@
 <!-- indexer::stop -->
 <div id="poll_container_<?php echo $this->id; ?>" class="poll_default<?php echo $this->cssClass; ?>">
 
+<!-- <h1 class="poll_title"><?php echo $this->headline; ?></h1> -->
 <p class="poll_title"><?php echo $this->title; ?></p>
+
+
 <?php if ($this->message): ?>
 <p class="<?php echo $this->mclass; ?>"><?php echo $this->message; ?></p>
 <?php endif; ?>
@@ -11,7 +14,7 @@
 <div class="results">
 <ul>
 <?php foreach ($this->results as $i => $result): ?>
-<li class="result_<?php echo $i; ?>"><div class="result_bar"><div style="width:<?php echo $result['prcnt']; ?>%;"></div></div><div class="result_option"><?php echo $result['prcnt']; ?>% - <?php echo $result['title']; ?></div></li>
+<li class="result_<?php echo $i; ?>"><div class="result_bar"><div style="width:<?php echo $result['prcnt']; ?>%;"></div></div><div class="result_option"><span><?php echo $result['prcnt']; ?>%</span> <?php echo $result['title']; ?></div></li>
 <?php endforeach; ?>
 </ul>
 <?php echo $this->formLink; ?>
@@ -35,6 +38,8 @@
 </div>
 </div>
 </form>
+
+
 
 </div>
 <?php endif; ?>

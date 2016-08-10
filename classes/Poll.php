@@ -203,7 +203,8 @@ class Poll extends \Frontend
 		// Display the results link
 		if (($blnActive && !$blnHasVoted && $this->objPoll->active_behaviorNotVoted == 'opt1') || ($blnActive && $blnHasVoted && $this->objPoll->active_behaviorVoted == 'opt2') || (!$blnActive && !$blnHasVoted && $this->objPoll->inactive_behaviorNotVoted == 'opt1') || (!$blnActive && $blnHasVoted && $this->objPoll->inactive_behaviorVoted == 'opt2'))
 		{
-			$objTemplate->resultsLink = sprintf('<a href="%s" class="results_link" title="%s">%s</a>', $this->generatePollUrl('results'), specialchars($GLOBALS['TL_LANG']['MSC']['showResults']), $GLOBALS['TL_LANG']['MSC']['showResults']);
+			// $objTemplate->resultsLink = sprintf('<a href="umfragen.php%s" class="results_link" title="%s">%s</a>', $this->generatePollUrl('results'), specialchars($GLOBALS['TL_LANG']['MSC']['showResults']), $GLOBALS['TL_LANG']['MSC']['showResults']);
+			$objTemplate->resultsLink = sprintf('<a href="%s" class="results_link" title="%s">%s</a>', $this->generatePollUrl('results', true), specialchars($GLOBALS['TL_LANG']['MSC']['showResults']), $GLOBALS['TL_LANG']['MSC']['showResults']);
 		}
 
 		// Add the vote
@@ -235,7 +236,9 @@ class Poll extends \Frontend
 
 			// Redirect or reload the page
 			$_SESSION['POLL'][$this->objPoll->id] = $GLOBALS['TL_LANG']['MSC']['voteSubmitted'];
-			$this->jumpToOrReload($this->jumpTo);
+			$_SESSION['LAST_POLL'] = $this->objPoll->id;
+			$this->redirect(\PageModel::findPublishedById($this->jumpTo)->getFrontendUrl().'?results=1');
+			// $this->jumpToOrReload($this->jumpTo);
 		}
 
 		return $objTemplate->parse();
@@ -285,7 +288,7 @@ class Poll extends \Frontend
 	 * @param string
 	 * @return string
 	 */
-	protected function generatePollUrl($strKey)
+	protected function generatePollUrl($strKey, $redirectToPollOverview = false)
 	{
 		list($strPage, $strQuery) = explode('?', \Environment::get('request'), 2);
 		$arrQuery = array();
@@ -306,8 +309,14 @@ class Poll extends \Frontend
 
         // Add the key
         $arrQuery[] = $strKey . '=' . $this->objPoll->id;
-
-		return ampersand($strPage . '?' . implode('&', $arrQuery));
+		
+        		
+        if ($redirectToPollOverview && (null !== \PageModel::findPublishedById($this->objPoll->jumpTo))) {
+        	return ampersand(\PageModel::findPublishedById($this->objPoll->jumpTo)->getFrontendUrl() . '?' . implode('&', $arrQuery));
+        } else {
+        	return ampersand($strPage . '?' . implode('&', $arrQuery));
+        }
+		
 	}
 
 
